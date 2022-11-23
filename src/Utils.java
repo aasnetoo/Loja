@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,18 +28,21 @@ public class Utils {
 
     private static void pesquisarProduto(Scanner scan, List<Produto> produtos, List<Produto> produtosFiltrados) {
         System.out.println("Digite o nome ou parte dele: ");
-        String resposta = scan.nextLine();
+        String resposta = scan.nextLine().toLowerCase();
 
-        for (Produto produto:
-                produtos) {
-            if (resposta.equalsIgnoreCase(produto.getNome())) {
+        for (Produto produto: produtos) {
+//            if (resposta.equalsIgnoreCase(produto.getNome())) {
+//                produtosFiltrados.add(produto);
+//            }
+            if (produto.getNome().toLowerCase().contains(resposta)){
                 produtosFiltrados.add(produto);
             }
         }
         for (Produto produto: produtosFiltrados) {
-            System.out.println(produto);
+            System.out.println(produto.getNome());
         }
     }
+
 
 
     public static void criarProduto(Scanner scan, List<Produto> produtos) {
