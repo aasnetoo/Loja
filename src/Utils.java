@@ -29,11 +29,8 @@ public class Utils {
     private static void pesquisarProduto(Scanner scan, List<Produto> produtos, List<Produto> produtosFiltrados) {
         System.out.println("Digite o nome ou parte dele: ");
         String resposta = scan.nextLine().toLowerCase();
-
+        produtosFiltrados.clear();
         for (Produto produto: produtos) {
-//            if (resposta.equalsIgnoreCase(produto.getNome())) {
-//                produtosFiltrados.add(produto);
-//            }
             if (produto.getNome().toLowerCase().contains(resposta)){
                 produtosFiltrados.add(produto);
             }
@@ -85,10 +82,9 @@ public class Utils {
     }
 
     public static void excluirProduto(List<Produto> produtos, Scanner scan) {
-        System.out.println("Você deseja remover qual aluno? Se não deseja remover nada digite 0");
+        System.out.println("Você deseja remover qual produto? Se não deseja remover nada digite 0");
         int id = 1;
-        for (Produto produto:
-                produtos) {
+        for (Produto produto: produtos) {
             System.out.println("Opção "+id+" - "+produto.getNome());
             id++;
         }
