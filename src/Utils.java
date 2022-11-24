@@ -21,7 +21,8 @@ public class Utils {
             case 3 -> excluirProduto(produtos,scan);
             case 4 -> pesquisarProduto(scan,produtos,produtosFiltrados);
             case 5 -> System.out.println("b");
-            case 6 -> System.exit(0);
+            case 6 ->{ scan.close();
+                System.exit(0);}
             default -> System.out.println("Escolha uma opção válida. ");
         }
     }

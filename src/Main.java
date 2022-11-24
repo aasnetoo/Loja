@@ -8,14 +8,10 @@ public class Main {
         Produto produto = new Produto();
         List<Produto> produtos = new ArrayList<>();
         List<Produto> produtosFiltrados = new ArrayList<>();
-        boolean continuar = true;
-        while(continuar) {
+        while(true) {
             Utils.mostrarMenu(scan, produto, produtos, produtosFiltrados);
         }
-
     }
-
-
 }
 
 
