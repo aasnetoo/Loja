@@ -21,9 +21,7 @@ public class Utils {
 //            case 3 -> excluirProduto(produtos,scan);
 //            case 4 -> pesquisarProduto(scan,produtos,produtosFiltrados);
 //            case 5 -> comprarProduto(scan, produto, produtos, produtosComprados);
-//            case 6 ->{ scan.close();
-//                System.exit(0);
-//                parada = false;}
+//            case 6 -> parada = false;
 //            default -> System.out.println("Escolha uma opção válida. ");
 //        }
 //    }
@@ -42,20 +40,45 @@ public class Utils {
         }
     }
 
-    public static void comprarProduto(Scanner scan, Produto produto, List<Produto> produtos, List<Produto> produtosComprados) {
-        System.out.println("Digite o indice do produto que você deseja: ");
-        int id = 1;
-        for (Produto produto1: produtos) {
-            System.out.println("Temos os seguintes produtos em estoque: ");
-            System.out.println("Indice: "+id+" - Nome "+produto1.getNome()+" - Quantidade: "+produto1.getQuantidade()+" e o valor: R$"+ produto1.getPreco());
+//    public static void comprarProduto(Scanner scan, Produto produto, List<Produto> produtos, List<Produto> produtosComprados) {
+//        produtosComprados.clear();
+//
+//        while(resp.equals) {
+//            System.out.println("Digite o indice do produto que você deseja: ");
+//            int id = 1;
+//            System.out.println("Temos os seguintes produtos em estoque: ");
+//            for (Produto produto1 : produtos) {
+//                System.out.println("Indice: " + id + " - Nome " + produto1.getNome() + " - Quantidade: " + produto1.getQuantidade() + " e o valor: R$" + produto1.getPreco());
+//                id++;
+//            }
+//            int indice = scan.nextInt();
+//            scan.nextLine();
+//            System.out.println("Digite a quantidade desejada do produto: ");
+//            String quantidadeProduto = scan.nextLine();
+//            produto.setNome(produtos.get(indice - 1).getNome());
+//            produto.setQuantidade(Integer.parseInt(quantidadeProduto));
+//            produto.setPreco(produtos.get(indice - 1).getPreco());
+//            produtosComprados.add(produto);
+//
+//            System.out.println("Deseja continuar comprando? 'Y' para sim ");
+//            String resp = scan.nextLine();
+//        }
+
+//        System.out.println("Compras: ");
+//        for (Produto produto2: produtosComprados) {
+//            System.out.println("Nome: "+produto2.getNome()+" - Quantidade: "+ produto2.getQuantidade()+" - Preço:  R$"+produto2.getPreco());
+//        }
+//        System.out.println("Valor total: R$ "+somaProdutosComprados(produtosComprados));
+//        }
+
+
+
+    public static double somaProdutosComprados(List<Produto> produtosComprados) {
+        double soma = 0;
+        for (Produto produto: produtosComprados) {
+            soma += produto.getQuantidade()* produto.getPreco();
         }
-        int indice = scan.nextInt();
-        System.out.println("Digite a quantidade desejada do produto: ");
-        String quantidadeProduto = scan.nextLine();
-        produto.setNome(produtos.get(indice).getNome());
-        produto.setQuantidade(Integer.parseInt(quantidadeProduto));
-        produto.setPreco(produtos.get(indice).getPreco());
-        produtosComprados.add(produto);
+        return soma;
     }
 
 
