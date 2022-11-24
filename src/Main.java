@@ -26,13 +26,8 @@ public class Main {
                 case 6 ->{ scan.close();
                     System.exit(0);}
                 default -> System.out.println("Escolha uma opção válida. ");
-//            Utils.mostrarMenu(scan, produto, produtos, produtosFiltrados, parada);
         }
-
-
-
         }
-
     }
 
     private static void pesquisarProduto(Scanner scan, List<Produto> produtos, List<Produto> produtosFiltrados) {
@@ -64,15 +59,25 @@ public class Main {
             int indice = scan.nextInt();
             scan.nextLine();
             System.out.println("Digite a quantidade desejada do produto: ");
-            String quantidadeProduto = scan.nextLine();
-            Produto produtoComprado = new Produto();
-            produtoComprado.setNome(produtos.get(indice - 1).getNome());
-            produtoComprado.setQuantidade(Integer.parseInt(quantidadeProduto));
-            produtoComprado.setPreco(produtos.get(indice - 1).getPreco());
-            produtosComprados.add(produtoComprado);
+            int quantidadeProduto = scan.nextInt();
+            scan.nextLine();
+            int teste = produtos.get(indice-1).getQuantidade();
+            if (quantidadeProduto > teste){
+                System.out.println("A quantidade digitada não contém no estoque");
+                continue;
+            }
+            else {
+                Produto produtoComprado = new Produto();
+                produtoComprado.setNome(produtos.get(indice - 1).getNome());
+                produtoComprado.setQuantidade(quantidadeProduto);
+                int antigaQuantidade = produtos.get(indice-1).getQuantidade();
+                produtos.get(indice-1).setQuantidade(antigaQuantidade-quantidadeProduto);
+                produtoComprado.setPreco(produtos.get(indice - 1).getPreco());
+                produtosComprados.add(produtoComprado);
 
-            System.out.println("Deseja continuar comprando? 'Y' para sim ");
-            resp = scan.nextLine();
+                System.out.println("Deseja continuar comprando? 'Y' para sim ");
+                resp = scan.nextLine();
+            }
         }
 
         System.out.println("Compras: ");
@@ -95,13 +100,15 @@ public class Main {
 
 
     private static void criarProduto(Scanner scan, List<Produto> produtos) {
-        Produto produto = new Produto();
+
         System.out.println("Digite o nome do Produto: ");
         String nome = scan.nextLine();
         System.out.println("Digite a quantidade do Produto: ");
         String quantidade = scan.nextLine();
         System.out.println("Digite o preco do Produto: ");
         String preco = scan.nextLine();
+
+        Produto produto = new Produto();
         produto.setQuantidade(Integer.parseInt(quantidade));
         produto.setNome(nome);
         produto.setPreco(Double.parseDouble(preco));
@@ -110,11 +117,12 @@ public class Main {
     private static void editarProduto(List<Produto> produtos, Scanner scan, Produto produto) {
         System.out.println("Você deseja editar qual produto? Se não deseja remover nada digite 0");
         int identificador = 1;
-        for (Produto produto1:
-                produtos) {
+        for (Produto produto1: produtos) {
             System.out.println("Opção "+identificador+" - "+produto1.getNome());
             identificador++;
         }
+
+
         int respostaEditar = scan.nextInt();
         scan.nextLine();
         if(respostaEditar == 0){
@@ -148,8 +156,7 @@ public class Main {
             produtos.remove(respostaRemover - 1);
         }
         System.out.println("Nova lista de Produtos: ");
-        for (Produto produto1:
-                produtos) {
+        for (Produto produto1: produtos) {
             System.out.println(produto1);
         }
     }
