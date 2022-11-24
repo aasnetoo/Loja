@@ -3,31 +3,32 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Utils {
-    public static void mostrarMenu(Scanner scan, Produto produto, List<Produto> produtos, List<Produto> produtosFiltrados) {
+//    public static void mostrarMenu(Scanner scan, Produto produto, List<Produto> produtos, List<Produto> produtosFiltrados, List<Produto> produtosComprados) {
+//
+//        System.out.println("Olá! Digite a opção que você deseja: ");
+//        System.out.println("1 - Cadastrar Produto");
+//        System.out.println("2 - Editar Produto");
+//        System.out.println("3 - Excluir Produto");
+//        System.out.println("4 - Pesquisa de Produtos");
+//        System.out.println("5 - Compra de Produtos");
+//        System.out.println("6 - Sair do programa");
+//
+//        int opcao = scan.nextInt();
+//        scan.nextLine();
+//        switch (opcao) {
+//            case 1 -> criarProduto(scan, produtos);
+//            case 2 -> editarProduto(produtos,scan,produto);
+//            case 3 -> excluirProduto(produtos,scan);
+//            case 4 -> pesquisarProduto(scan,produtos,produtosFiltrados);
+//            case 5 -> comprarProduto(scan, produto, produtos, produtosComprados);
+//            case 6 ->{ scan.close();
+//                System.exit(0);
+//                parada = false;}
+//            default -> System.out.println("Escolha uma opção válida. ");
+//        }
+//    }
 
-        System.out.println("Olá! Digite a opção que você deseja: ");
-        System.out.println("1 - Cadastrar Produto");
-        System.out.println("2 - Editar Produto");
-        System.out.println("3 - Excluir Produto");
-        System.out.println("4 - Pesquisa de Produtos");
-        System.out.println("5 - Compra de Produtos");
-        System.out.println("6 - Sair do programa");
-
-        int opcao = scan.nextInt();
-        scan.nextLine();
-        switch (opcao) {
-            case 1 -> criarProduto(scan, produtos);
-            case 2 -> editarProduto(produtos,scan,produto);
-            case 3 -> excluirProduto(produtos,scan);
-            case 4 -> pesquisarProduto(scan,produtos,produtosFiltrados);
-            case 5 -> System.out.println("b");
-            case 6 ->{ scan.close();
-                System.exit(0);}
-            default -> System.out.println("Escolha uma opção válida. ");
-        }
-    }
-
-    private static void pesquisarProduto(Scanner scan, List<Produto> produtos, List<Produto> produtosFiltrados) {
+    public static void pesquisarProduto(Scanner scan, List<Produto> produtos, List<Produto> produtosFiltrados) {
         System.out.println("Digite o nome ou parte dele: ");
         String resposta = scan.nextLine().toLowerCase();
         produtosFiltrados.clear();
@@ -39,6 +40,22 @@ public class Utils {
         for (Produto produto: produtosFiltrados) {
             System.out.println(produto.getNome());
         }
+    }
+
+    public static void comprarProduto(Scanner scan, Produto produto, List<Produto> produtos, List<Produto> produtosComprados) {
+        System.out.println("Digite o indice do produto que você deseja: ");
+        int id = 1;
+        for (Produto produto1: produtos) {
+            System.out.println("Temos os seguintes produtos em estoque: ");
+            System.out.println("Indice: "+id+" - Nome "+produto1.getNome()+" - Quantidade: "+produto1.getQuantidade()+" e o valor: R$"+ produto1.getPreco());
+        }
+        int indice = scan.nextInt();
+        System.out.println("Digite a quantidade desejada do produto: ");
+        String quantidadeProduto = scan.nextLine();
+        produto.setNome(produtos.get(indice).getNome());
+        produto.setQuantidade(Integer.parseInt(quantidadeProduto));
+        produto.setPreco(produtos.get(indice).getPreco());
+        produtosComprados.add(produto);
     }
 
 
