@@ -157,7 +157,8 @@ public class Main {
         }
         System.out.println("Nova lista de Produtos: ");
         for (Produto produto1: produtos) {
-            System.out.println(produto1);
+            System.out.println(produto1.getNome());
+            System.out.println();
         }
     }
 
