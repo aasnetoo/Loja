@@ -61,8 +61,8 @@ public class Main {
             System.out.println("Digite a quantidade desejada do produto: ");
             int quantidadeProduto = scan.nextInt();
             scan.nextLine();
-            int teste = produtos.get(indice-1).getQuantidade();
-            if (quantidadeProduto > teste){
+            int quantidadeReal = produtos.get(indice-1).getQuantidade();
+            if (quantidadeProduto > quantidadeReal){
                 System.out.println("A quantidade digitada não contém no estoque");
                 continue;
             }
